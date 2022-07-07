@@ -1,4 +1,4 @@
-resource "random_pet" "sg" {}
+resource "random_pet" "sgc" {}
   
   resource "aws_vpc" "awsec2demo" {
     cidr_block = "172.16.0.0/16"
