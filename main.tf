@@ -9,12 +9,11 @@ terraform {
       version = "3.0.1"
     }
   }
-
   cloud {
-    organization = "REPLACE_ME"
+    organization = "terraform-organisation-1997"
 
     workspaces {
-      name = "gh-actions-demo"
+      name = "terraform-workflow-1997"
     }
   }
 }
