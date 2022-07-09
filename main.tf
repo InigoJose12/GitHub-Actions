@@ -38,19 +38,30 @@ resource "aws_instance" "web" {
 
 resource "aws_security_group" "web-sg" {
   name = "my-security-group" 
-  ingress = { 
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
+  ingress = [ {
     cidr_blocks = ["0.0.0.0/0"]
-  }
+    description = "my-inbound rules"
+    from_port = 8080
+    ipv6_cidr_blocks = []
+    prefix_list_ids = []
+    protocol = "tcp"
+    security_groups = []
+    self = false
+    to_port = 8080
+  } ]
+  egress = [ {
+    cidr_blocks = [ "0.0.0.0/0" ]
+    description = "outbound-rules"
+    from_port = 0
+    ipv6_cidr_blocks = []
+    prefix_list_ids = []
+    protocol = "-1"
+    security_groups = []
+    self = false
+    to_port = 0
+  } ]
   // connectivity to ubuntu mirrors is required to run `apt-get update` and `apt-get install apache2`
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  
 }
 
 output "web-address" {
