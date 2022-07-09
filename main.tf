@@ -31,7 +31,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_security_group" "web-sg" {
-  name = "${random_pet.sg.id}-sg"
+  name = "Mysecuritysg"
   ingress {
     from_port   = 8080
     to_port     = 8080
