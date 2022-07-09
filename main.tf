@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.50.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.0.1"
+    }
   }
   cloud {
     organization = "terraform-organisation-1997"
@@ -17,6 +21,8 @@ terraform {
 provider "aws" {
   region = "ap-south-1"
   profile = "default"
+  access_key = "${var.AWS_ACCESS_KEY}"
+  secret_key = "${var.AWS_SECRET_KEY}"
 }
 
 
@@ -31,8 +37,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_security_group" "web-sg" {
-  name = "Mysecuritysg"
-  ingress {
+  name = "my-security-group" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
